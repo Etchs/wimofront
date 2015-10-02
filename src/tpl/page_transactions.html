@@ -1,0 +1,55 @@
+<div class="bg-light lter b-b wrapper-md">
+    <ul class="nav nav-pills nav-sm">
+    <h1 class="m-n font-thin h3 pull-left">Transactions</h1>
+    <li class="active m-l-md">
+      <div class="dropdown">
+          <button class="btn btn-default" data-toggle="dropdown" aria-expanded="false">Tools <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href=""><i class="fa fa-file-excel-o"></i> Export as Excel</a></li>
+            <li><a ui-sref="app.page.createinvoice"><i class="icon-doc"></i> Invoice</a></li>
+            <li><a ui-sref="app.page.createinvoice"><i class="icon-doc"></i> Bill</a></li>
+          </ul>
+        </div>
+    </li>       
+  </ul>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      All Transactions
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'api/datatable.json',
+          aoColumns: [
+            { mData: 'index' },
+            { mData: 'eRetailer' },
+            { mData: 'Courier' },
+            { mData: 'weight' },
+            { mData: 'Status' },
+            { mData: 'customerphone' },
+            { mData: 'date' },
+            { mData: 'price' },
+            { mData: 'payment' }
+          ]
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th style="width:10%">ID</th>
+            <th style="width:13%">eRetailer</th>
+            <th style="width:10%">Courier</th>            
+            <th style="width:10%">weight</th>
+            <th style="width:10%">Status</th>
+            <th style="width:15%">Mobile</th>
+            <th style="width:14%">Date</th>
+            <th style="width:10%">Income</th>
+            <th style="width:10%">Payment</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

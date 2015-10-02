@@ -1,0 +1,46 @@
+<div class="bg-light lter b-b wrapper-md">  
+  <ul class="nav nav-pills nav-sm">
+    <h1 class="m-n font-thin h3 pull-left">eRetailers</h1>
+    <li class="active m-l-md"><a ui-sref="app.page.addvendor">Add eRetailer</a></li>       
+  </ul>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      All eRetailers
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'api/retailers.json',
+          aoColumns: [
+            { mData: 'Logo' },
+            { mData: 'eRetailer' },
+            { mData: 'Category' },
+            { mData: 'FinalHealth' },
+            { mData: 'Delivered' },
+            { mData: 'Shipped' },
+            { mData: 'Income' }
+          ]
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:10%">Logo</th>
+            <th  style="">Retailer Name</th>
+            <th  style="">Category</th>
+            <th  style="width:15%">WS Health</th>
+            <th  style="width:10%">Deliveries</th>
+            <th  style="width:15%">Shipped</th>
+            <th  style="width:15%">Total Income</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<style>
+  .table > tbody > tr > td{ vertical-align: middle;}
+</style>

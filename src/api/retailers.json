@@ -1,0 +1,58 @@
+{ "aaData": [
+  {
+    "Logo": "<a ui-sref=\"app.page.details\" class=\"thumb-md pull-left m-r\"><img class=\"img-thumbnail\" src=\"img/namshi.png\" /></a>",
+    "eRetailer": "<a ui-sref=\"app.page.details\" href=\"#/app/page/details\">Namshi</a>",
+    "Category": "E-commerce",
+    "Health": "Risky",
+    "healthy": "text-danger",
+    "Shipped": "29 KG",
+    "Delivered": 732,
+    "Income": "$1,385,897.38",
+    "FinalHealth": "<i class=\"fa fa-circle text-danger\"></i> Risky"
+  },
+  {
+    "Logo": "<a ui-sref=\"app.page.details\" class=\"thumb-md pull-left m-r\"><img class=\"img-thumbnail\" src=\"img/carrefour.png\" /></a>",
+    "eRetailer": "<a ui-sref=\"app.page.details\" href=\"#/app/page/details\">Carrefour</a>",
+    "Category": "HyperMarket",
+    "Health": "Medium",
+    "healthy": "text-warning",
+    "Shipped": "33 KG",
+    "Delivered": 2177,
+    "Income": "$3,540,321.33",
+    "FinalHealth": "<i class=\"fa fa-circle text-warning\"></i> Medium"
+  },
+  {
+    "Logo": "<a ui-sref=\"app.page.details\" class=\"thumb-md pull-left m-r\"><img class=\"img-thumbnail\" src=\"img/farook.png\" /></a>",
+    "eRetailer": "<a ui-sref=\"app.page.details\"><strong>Farook</strong></a>",
+    "Category": "Stationery",
+    "Health": "Good",
+    "healthy": "text-success",
+    "Shipped": "23 KG",
+    "Delivered": 1907,
+    "Income": "$3,162,875.64",
+    "FinalHealth": "<i class=\"fa fa-circle text-success\"></i> Good"
+  },
+  {
+    "Logo": "<a ui-sref=\"app.page.details\" class=\"thumb-md pull-left m-r\"><img class=\"img-thumbnail\" src=\"img/stationery.png\" /></a>",
+    "eRetailer": "<a ui-sref=\"app.page.details\"><strong>Stationery</strong></a>",
+    "Category": "Stationery",
+    "Health": "Medium",
+    "healthy": "text-danger",
+    "Shipped": "40 KG",
+    "Delivered": 1222,
+    "Income": "$2,165,799.67",
+    "FinalHealth": "<i class=\"fa fa-circle text-danger\"></i> Medium"
+  },
+  {
+    "Logo": "<a ui-sref=\"app.page.details\" class=\"thumb-md pull-left m-r\"><img class=\"img-thumbnail\" src=\"img/markavip.png\" /></a>",
+    "eRetailer": "<a ui-sref=\"app.page.details\"><strong>MarkaVIP</strong></a>",
+    "Category": "E-commerce",
+    "Health": "Good",
+    "healthy": "text-warning",
+    "Shipped": "40 KG",
+    "Delivered": 1691,
+    "Income": "$1,549,432.78",
+    "FinalHealth": "<i class=\"fa fa-circle text-warning\"></i> Good"
+  }
+]
+ }

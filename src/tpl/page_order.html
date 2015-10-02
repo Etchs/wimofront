@@ -1,0 +1,65 @@
+<div class="bg-dark lter b-b wrapper-md text-center">
+  <h1 class="m-n h3 font-bold">What you want, when you want it</h1>
+  <small class="text-muted font-bold">wimo is your super fast and convenient local delivery service</small>
+</div>
+
+  <form role="form">
+    <div ng-controller="TypeaheadDemoCtrl" class="col-sm-10 col-sm-offset-1 bg-white-only">
+    <div class="container-fluid" style="max-width:600px">
+      <div class="row">
+      <h3 class="m-t m-b-lg h3 font-bold text-center">Get a quote now!</h3>
+      <div class="col-sm-1">
+        <label class="h3 font-bold">From</label>
+      </div>
+      <div class="col-sm-5">
+        <div class="pos-rlt">
+            <i ng-show="loadingLocations" class="fa fa-spinner fa-spin form-control-spin"></i>
+            <input type="text" ng-model="asyncSelected" placeholder="Pickup city or area" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+          </div> 
+      </div>
+      <div class="col-sm-1">
+        <label class="h3 font-bold">To</label>
+      </div>
+      <div class="col-sm-5 control-group">
+        <div class="pos-rlt">
+            <i ng-show="loadingLocations" class="fa fa-spinner fa-spin form-control-spin"></i>
+            <input type="text" ng-model="asyncSelectedto" placeholder="Delivery community" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+          </div> 
+      </div>
+       </div>
+       <hr>
+       <div class="row">
+         <h3 class="m-t m-b-lg h3 font-bold text-center">My item is a...</h3>
+         <div class="col-sm-3 text-center">
+            <img src="img/doc.png" alt="..." class="">
+            <label>Document</label>
+         </div>
+         <div class="col-sm-3 text-center">
+           <img src="img/small.png" alt="..." class="">
+            <label>Small Parcel</label>
+         </div>
+         <div class="col-sm-3 text-center">
+           <img src="img/med.png" alt="..." class="">
+            <label>Medium Parcel</label>
+         </div>
+         <div class="col-sm-3 text-center">
+           <img src="img/big.png" alt="..." class="">
+            <label>Big Parcel</label>
+         </div>
+        
+       </div>
+       <p class="text-center m-t">
+          <a class="dimensions-show text-info" data-dimensions="show">
+          I don't know my product dimensions!
+          </a>
+        </p>
+       <hr>
+      <div class="m-t m-b">
+        <button class="btn m-b-xs w-full btn-success btn-rounded btn-lg">Get Quotes</button>
+      </div>
+      </div>
+    </div>
+    </form>
+ 
+
+</div>

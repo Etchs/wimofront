@@ -1,0 +1,43 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Couriers</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      All Couriers
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'api/couriers.json',
+          aoColumns: [
+            { mData: 'Logo' },
+            { mData: 'Courier' },
+            { mData: 'Rating' },
+            { mData: 'FinalHealth' },
+            { mData: 'Delivered' },
+            { mData: 'Shipped' },
+            { mData: 'Income' }
+          ]
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:10%">Logo</th>
+            <th  style="">Courier</th>
+            <th  style="">Rating</th>
+            <th  style="width:15%">WS Health</th>
+            <th  style="width:10%">Deliveries</th>
+            <th  style="width:15%">Shipped</th>
+            <th  style="width:15%">Total Income</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<style>
+  .table > tbody > tr > td{ vertical-align: middle;}
+</style>
