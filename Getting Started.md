@@ -12,11 +12,11 @@
 
 7. Now that the virtual machine is running in your terminal/bash, run these commands:
    sudo npm install -g grunt-cli
-   
+   sudo npm install -g bower
 
 8. navigate to /vagrant and run the following commands:
 	sudo npm install
-	sudo grunt bower-install
+	grunt bower-install-simple
 	sudo npm start
 	sudo grunt build:angular
 	

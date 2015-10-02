@@ -10,6 +10,7 @@ $script = <<SCRIPT
 	yes | sudo apt-get install curl
 	yes | curl -sL https://deb.nodesource.com/setup | sudo bash -
 	yes | sudo apt-get install -y nodejs
+	yes | sudo apt-get install git-core
 	mkdir -p /var/tmp/wimo-front/node_modules
 	chmod -R 777 /var/tmp/wimo-front/
 	ln -sf /vagrant/package.json /var/tmp/wimo-front/
