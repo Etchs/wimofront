@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('app', [
+var app = angular.module('app', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -17,5 +17,11 @@ angular.module('app', [
     'ui.jq',
     'oc.lazyLoad',
     'pascalprecht.translate',
-    'ngMaterial'
+    'ngMaterial',
+    'restangular'
 ]);
+
+app.config([ 'RestangularProvider',
+    function ( RestangularProvider ) {
+      RestangularProvider.setBaseUrl('http://localhost:1337');
+    }]);
