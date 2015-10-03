@@ -5,6 +5,10 @@
 app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStorage', 'Restangular', function($scope, $http, $state, $localStorage, Restangular) {
   $scope.user = {};
 
+  if ($localStorage.access_token) {
+    $state.go('app.dashboard-v1', {retailer:$scope.retailer});
+  }
+
   $scope.login = function() {
       Restangular.all('auth/login').post($scope.user).then(function(data) {
         // alert("succ");
@@ -19,16 +23,6 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStor
               $scope.authError = 'Something went wrong! Please try again later.';
               console.log(err);
             });
-
-        // $http.get('user/jwt')
-        // .then(function(tokenObj) {
-        //   console.log(tokenObj);
-        //   $localStorage.access_token = tokenObj.token;
-        //   $state.go('app.page.neworder');
-        // }, function(x) {
-        //   $scope.authError = 'Something went wrong! Please try again later.';
-        //   console.log(err);
-        // });
 
       }, function(err) {
         // alert("error");
