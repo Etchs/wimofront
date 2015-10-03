@@ -19,6 +19,7 @@
 	grunt bower-install-simple
 	sudo npm start
 	sudo grunt build:angular
-	
+	npm i -g lodash-cli
+	lodash modern -o ./lodash.js
 	
 	

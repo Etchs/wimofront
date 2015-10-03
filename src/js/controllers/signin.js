@@ -2,20 +2,43 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state', 'restangular', function($scope, $http, $state, restangular) {
+app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStorage', 'Restangular', function($scope, $http, $state, $localStorage, Restangular) {
   $scope.user = {};
-  var loginData = {
-    email: $scope.user.email,
-    password: $scope.user.password
-  };
 
   $scope.login = function() {
-      restangular.one('auth').post('login', loginData).then(function(data) {
-        alert("succ");
+      Restangular.all('auth/login').post($scope.user).then(function(data) {
+        // alert("succ");
         console.log(data);
+        Restangular.one('user/jwt').get().then(
+            function (tokenObj) {
+              console.log(tokenObj);
+              $localStorage.access_token = tokenObj.token;
+              $state.go('app.page.neworder');
+            },
+            function (err) {
+              $scope.authError = 'Something went wrong! Please try again later.';
+              console.log(err);
+            });
+
+        // $http.get('user/jwt')
+        // .then(function(tokenObj) {
+        //   console.log(tokenObj);
+        //   $localStorage.access_token = tokenObj.token;
+        //   $state.go('app.page.neworder');
+        // }, function(x) {
+        //   $scope.authError = 'Something went wrong! Please try again later.';
+        //   console.log(err);
+        // });
+
       }, function(err) {
-        alert("error");
+        // alert("error");
         console.log(err);
+        if(err && err.data && err.data.error && typeof err.data.error == 'string'){
+          $scope.authError = err.data.error;
+        } else {
+          $scope.authError = 'Something went wrong! Please try again later.';
+        }
+        
       });
 
     };
@@ -39,3 +62,5 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', 'restangula
       };
       */
 }]);
+
+
