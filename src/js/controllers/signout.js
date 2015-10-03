@@ -2,7 +2,7 @@
 
 /* Controllers */
 // signout controller
-app.controller('SignoutFormController', ['$scope', '$state', 'LoggedInRestangular', function($scope, $state, LoggedInRestangular) {
+app.controller('SignoutFormController', ['$scope', '$state', 'LoggedInRestangular','$localStorage', function($scope, $state, LoggedInRestangular,$localStorage) {
   $scope.user = {};
 
   $scope.logout = function() {
@@ -10,6 +10,7 @@ app.controller('SignoutFormController', ['$scope', '$state', 'LoggedInRestangula
         function (res) {
           console.log('res');
           console.log(res);
+          $localStorage.access_token = null;
           $state.go('access.signin');
         },
         function (err) {

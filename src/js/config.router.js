@@ -16,18 +16,15 @@ angular.module('app')
 		['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 'MODULE_CONFIG',
 			function($stateProvider, $urlRouterProvider, JQ_CONFIG, MODULE_CONFIG) {
 				var layout = "tpl/app.html";
-				// if (!$localStorage.access_token) {
-				// 	$urlRouterProvider.otherwise('/access/signin');
-				// } else {
 					if (window.location.href.indexOf("material") > 0) {
 						layout = "tpl/blocks/material.layout.html";
 						$urlRouterProvider
-							.otherwise('/app/dashboard-v3');
+							.otherwise('/access/signin');
 					} else {
 						$urlRouterProvider
-							.otherwise('/app/dashboard-v1');
+							.otherwise('/access/signin');
 					}
-				// }
+
 				$stateProvider
 					.state('app', {
 						abstract: true,
