@@ -6,7 +6,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStor
   $scope.user = {};
 
   if ($localStorage.access_token) {
-    $state.go('app.dashboard-v1', {retailer:$scope.retailer});
+    $state.go('app.dashboard-v1');
   }
 
   $scope.login = function() {

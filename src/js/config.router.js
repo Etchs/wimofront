@@ -5,10 +5,12 @@
  */
 angular.module('app')
 	.run(
-		['$rootScope', '$state', '$stateParams',
-			function($rootScope, $state, $stateParams) {
+		['$rootScope', '$state', '$stateParams', '$localStorage',
+			function($rootScope, $state, $stateParams, $localStorage) {
 				$rootScope.$state = $state;
 				$rootScope.$stateParams = $stateParams;
+        if($localStorage.access_token) $state.go('app.dashboard-v1');
+        else $state.go('access.signin');
 			}
 		]
 	)
