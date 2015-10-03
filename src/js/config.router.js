@@ -11,7 +11,7 @@ angular.module('app')
 				$rootScope.$stateParams = $stateParams;
         // if($localStorage.access_token) $state.go('app.dashboard-v1');
         // else $state.go('access.signin');
-
+        
         $rootScope.on('$locationChangeStart', function(event, next, current) {
           // check for the user's token and that we aren't going to the login view
           console.log('going to: ', next);
@@ -19,7 +19,8 @@ angular.module('app')
             // go to the login view
             $state.go('access.signin');
           }
-        }
+        });
+
 			}
 		]
 	)
