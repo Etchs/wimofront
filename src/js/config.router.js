@@ -236,6 +236,10 @@ angular.module('app')
 						url: '/transactions',
 						templateUrl: 'tpl/page_transactions.html'
 					})
+					.state('app.page.transaction', {
+						url: '/transactions',
+						templateUrl: 'tpl/page_transaction.html'
+					})
 					.state('app.page.details', {
 						url: '/details',
 						templateUrl: 'tpl/page_details.html',
