@@ -16,7 +16,7 @@ var app = angular.module('app', [
 	'ui.load',
 	'ui.jq',
 	'oc.lazyLoad',
-	'globalConfig',
+	// 'globalConfig',
 	'pascalprecht.translate',
 	'ngMaterial',
 	'restangular'
