@@ -11,12 +11,10 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStor
 
   $scope.login = function() {
       Restangular.all('auth/login').post($scope.user).then(function(data) {
-        // alert("succ");
-        console.log(data);
+        $localStorage.me = data;
         Restangular.one('user/jwt').get().then(
             function (tokenObj) {
-              console.log(tokenObj);
-              $localStorage.access_token = tokenObj.token;
+              $localStorage.tokenObj = tokenObj;
               $state.go('app.page.neworder');
             },
             function (err) {
@@ -25,8 +23,6 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStor
             });
 
       }, function(err) {
-        // alert("error");
-        console.log(err);
         if(err && err.data && err.data.error && typeof err.data.error == 'string'){
           $scope.authError = err.data.error;
         } else {

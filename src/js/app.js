@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('app', [
+var app = angular.module('app', [
 	'ngAnimate',
 	'ngAria',
 	'ngCookies',
@@ -16,18 +16,24 @@ angular.module('app', [
 	'ui.load',
 	'ui.jq',
 	'oc.lazyLoad',
+	'globalConfig',
 	'pascalprecht.translate',
 	'ngMaterial',
 	'restangular'
-]).config(['RestangularProvider',
+]);
+app.config(['RestangularProvider',
 		function(RestangularProvider) {
 			RestangularProvider.setBaseUrl('http://localhost:1337');
-			RestangularProvider.setDefaultHttpFields({withCredentials: true});
+			RestangularProvider.setDefaultHttpFields({
+				withCredentials: true
+			});
 		}
-	]).factory('LoggedInRestangular', ['$localStorage', 'Restangular', function($localStorage, Restangular) {
+	])
+	.factory('LoggedInRestangular', ['$localStorage', 'Restangular', function($localStorage, Restangular) {
 		return Restangular.withConfig(function(RestangularConfigurer) {
 			RestangularConfigurer.setDefaultHeaders({
-				access_token: $localStorage.access_token
+				// api_key: configuration.PRIVATE_API_KEY,
+				access_token: $localStorage.tokenObj ? $localStorage.tokenObj.token : null
 			});
 		});
 	}]);

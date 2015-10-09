@@ -1,67 +1,74 @@
 <div class="bg-light lter b-b wrapper-md">
-   <ul class="nav nav-pills nav-sm">
-    
+  <ul class="nav nav-pills nav-sm">
+
     <li class="active">
       <div class="dropdown">
-          <button class="btn btn-default" data-toggle="dropdown" aria-expanded="false">View All Branches  <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="">Branch 1</a></li>
-            <li><a href="">Branch 2</a></li>
-            <li><a href="">Branch 3</a></li>
-          </ul>
-        </div>
+        <button class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+          View All Branches
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="">Branch 1</a>
+          </li>
+          <li>
+            <a href="">Branch 2</a>
+          </li>
+          <li>
+            <a href="">Branch 3</a>
+          </li>
+        </ul>
+      </div>
     </li>
     <li>
-    <div class="form-group">
-          <label class=" col-sm-4 control-label">Date Range</label>
-          <div class="col-sm-8">
-            <input ui-jq="daterangepicker" ui-options="{
+      <div class="form-group">
+        <label class=" col-sm-4 control-label">Date Range</label>
+        <div class="col-sm-8">
+          <input ui-jq="daterangepicker" ui-options="{
                 format: 'YYYY-MM-DD',
                 startDate: '2013-01-01',
                 endDate: '2013-12-31'
               }" class="form-control w-md" />
-          </div>
-    </div>
-    </li> 
-
+        </div>
+      </div>
+    </li>
 
   </ul>
 </div>
-<div class="wrapper-md">
+<div class="wrapper-md" ng-controller="ViewRetailerCtrl">
   <div ng-controller="FlotChartDemoCtrl">
     <div class="row">
-<div class="col-md-4">
-<div class="panel panel-default">
-        <div class="panel-body">
-          <div class="clearfix text-center m-t-sm m-b-xs">
-            <div class="inline">
-              <div class="thumb-xl">
-                  <img src="img/namshi.png" class="img-thumbnail" alt="...">
-                </div>
-              <div class="h3 m-t m-b-xs">Namshi</div>
-              <small class="text-muted m-b">E-commerce</small>
-            </div>                      
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="clearfix text-center m-t-sm m-b-xs">
+              <div class="inline">
+                <div class="thumb-xl">
+                  <img src="img/namshi.png" class="img-thumbnail" alt="..."></div>
+                <div class="h3 m-t m-b-xs">{{retailer.name}}</div>
+                <small class="text-muted m-b">{{retailer.category}}</small>
+              </div>
+            </div>
           </div>
-        </div>
-        <footer class="panel-footer bg-default text-center no-padder">
-          <div class="panel-footer bg-light lter wrapper">
+          <footer class="panel-footer bg-default text-center no-padder">
+            <div class="panel-footer bg-light lter wrapper">
               <div class="row">
                 <div class="col-xs-6">
                   <small class="text-muted block">Transcations</small>
-                  <span class="text-md">122,500</span>
+                  <span class="text-md">{{retailer.deliveries | number:0}}</span>
                 </div>
                 <div class="col-xs-6">
                   <small class="text-muted block">Income</small>
-                  <span class="text-md">$ 21,000,121</span>
+                  <span class="text-md">$ {{retailer.totalIncome | number:0}}</span>
                 </div>
               </div>
             </div>
-        </footer>
+          </footer>
+        </div>
       </div>
-</div>
-<div class="col-md-8">
+      <div class="col-md-8">
         <div class="panel panel-default">
-          <div class="panel-heading font-bold">Namshi Performance</div>
+          <div class="panel-heading font-bold">{{retailer.name}} Performance</div>
           <div class="panel-body">
             <div ui-jq="plot" ui-options="
               [
@@ -82,213 +89,191 @@
                 tooltip: true,
                 tooltipOpts: { content: '%x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
               }
-            " style="height:240px" >
-            </div>
+            " style="height:240px" ></div>
           </div>
         </div>
       </div>
-
-
-
-
-
-
-    </div></div>
-
-
-<!-- tab -->
-      <div ng-controller="TabsDemoCtrl">
-        <tabset class="tab-container">
-
-          <tab>
-            <tab-heading>
-              <i class="fa fa-ellipsis-h"></i> Details
-            </tab-heading>
-            eRetailer Name, Address, Point of contact..etc
-          </tab>
-
-          <tab>
-            <tab-heading>
-              <i class="fa fa-gear"></i> Configuration
-            </tab-heading>
-            <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled" method="get">
-       <div class="form-group">
-          <label class="col-sm-2 control-label">Account Status</label>
-          <div class="col-sm-10 inline">
-            <label class="i-switch i-switch-md bg-success m-t-xs m-r">
-              <input type="checkbox" checked="">
-              <i></i>
-            </label>
-            <span class="help-block m-b-none"><small>Activate or Deactivate the account.</small></span>
-          </div>
-        </div>
-
-
-      <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label"><img src="img/aramex.png" class="img-rounded m-r-xs thumb-xs" />Aramex</label>
-          <div class="col-sm-10 inline">
-            <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-              <input type="checkbox" checked="">
-              <i></i>
-            </label>
-          </div>
-        </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Markup</label>
-                <div class="col-sm-2 inline">
-                <input type="number" class="form-control" placeholder="5" ng-model="g.d" required >
-                </div>
-                <div class="col-sm-1 inline">
-                  <select name="account" class="form-control">
-                    <option value="option 1">%</option>
-                    <option value="option 2">AED</option>
-                  </select>
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Account Username</label>
-                <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required >
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Account Password</label>
-                <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required >
-                </div>
-              </div>
-
-
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label"><img src="img/dhl.png" class="img-rounded m-r-xs thumb-xs" />DHL</label>
-          <div class="col-sm-10 inline">
-            <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-              <input type="checkbox" checked="">
-              <i></i>
-            </label>
-          </div>
-        </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Markup</label>
-                <div class="col-sm-2 inline">
-                <input type="number" class="form-control" placeholder="5" ng-model="g.d" required >
-                </div>
-                <div class="col-sm-1 inline">
-                  <select name="account" class="form-control">
-                    <option value="option 1">%</option>
-                    <option value="option 2">AED</option>
-                  </select>
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Account Username</label>
-                <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required >
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Account Password</label>
-                <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required >
-                </div>
-              </div>
-
-
-
-<div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label"><img src="img/fedex.png" class="img-rounded m-r-xs thumb-xs" />Fedex</label>
-          <div class="col-sm-10 inline">
-            <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-              <input type="checkbox" checked="">
-              <i></i>
-            </label>
-          </div>
-        </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Markup</label>
-                <div class="col-sm-2 inline">
-                <input type="number" class="form-control" placeholder="5" ng-model="g.d" required >
-                </div>
-                <div class="col-sm-1 inline">
-                  <select name="account" class="form-control">
-                    <option value="option 1">%</option>
-                    <option value="option 2">AED</option>
-                  </select>
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Account Username</label>
-                <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required >
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Account Password</label>
-                <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required >
-                </div>
-              </div>
-
-
-
-        
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Live Access Token</label>
-          <div class="col-lg-4">
-            <input class="form-control inline" type="text" placeholder="LSDAS1231aA" disabled="">
-            
-          </div>
-          <div class="col-lg-2">
-            <a class="btn btn-default inline">Regenerate</a>
-          </div>
-        </div>
-
-         <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Development Access Token</label>
-          <div class="col-lg-4">
-            <input class="form-control" type="text" placeholder="DEVSDAS31aC" disabled="">
-          </div>
-          <div class="col-lg-2">
-            <a class="btn btn-default inline">Regenerate</a>
-          </div>
-        </div>
-
-        
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-          <div class="col-sm-4 col-sm-offset-2">
-            <button type="submit" class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </form>
-          </tab>
-
-
-        </tabset>
-
-      </div>
-      <!-- / tab -->
-
 
     </div>
+  </div>
 
+  <!-- tab -->
+  <div ng-controller="UpdateRetailerCtrl">
+    <tabset class="tab-container">
 
+      <tab>
+        <tab-heading> <i class="fa fa-ellipsis-h"></i>
+          Details
+        </tab-heading>
+        {{retailer.name}}, {{retailer.contactInfo.address}}, Point of contact..etc
+      </tab>
 
+      <tab>
+        <tab-heading> <i class="fa fa-gear"></i>
+          Configuration
+        </tab-heading>
+        <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled" method="get">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Status</label>
+            <div class="col-sm-10 inline">
+              <label class="i-switch i-switch-md bg-success m-t-xs m-r">
+                <input type="checkbox" ng-model="retailer.accountStatus">
+                <i></i>
+              </label>
+              <span class="help-block m-b-none">
+                <small>Activate or Deactivate the account.</small>
+              </span>
+            </div>
+          </div>
+
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">
+              <img src="img/aramex.png" class="img-rounded m-r-xs thumb-xs" />
+              Aramex
+            </label>
+            <div class="col-sm-10 inline">
+              <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                <input type="checkbox" checked="">
+                <i></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Markup</label>
+            <div class="col-sm-2 inline">
+              <input type="number" class="form-control" placeholder="5" ng-model="g.d" required ></div>
+            <div class="col-sm-1 inline">
+              <select name="account" class="form-control">
+                <option value="option 1">%</option>
+                <option value="option 2">AED</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Username</label>
+            <div class="col-sm-3 inline">
+              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required ></div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Password</label>
+            <div class="col-sm-3 inline">
+              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ></div>
+          </div>
+
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">
+              <img src="img/dhl.png" class="img-rounded m-r-xs thumb-xs" />
+              DHL
+            </label>
+            <div class="col-sm-10 inline">
+              <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                <input type="checkbox" checked="">
+                <i></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Markup</label>
+            <div class="col-sm-2 inline">
+              <input type="number" class="form-control" placeholder="5" ng-model="g.d" required ></div>
+            <div class="col-sm-1 inline">
+              <select name="account" class="form-control">
+                <option value="option 1">%</option>
+                <option value="option 2">AED</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Username</label>
+            <div class="col-sm-3 inline">
+              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required ></div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Password</label>
+            <div class="col-sm-3 inline">
+              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ></div>
+          </div>
+
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">
+              <img src="img/fedex.png" class="img-rounded m-r-xs thumb-xs" />
+              Fedex
+            </label>
+            <div class="col-sm-10 inline">
+              <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                <input type="checkbox" checked="">
+                <i></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Markup</label>
+            <div class="col-sm-2 inline">
+              <input type="number" class="form-control" placeholder="5" ng-model="g.d" required ></div>
+            <div class="col-sm-1 inline">
+              <select name="account" class="form-control">
+                <option value="option 1">%</option>
+                <option value="option 2">AED</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Username</label>
+            <div class="col-sm-3 inline">
+              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required ></div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Account Password</label>
+            <div class="col-sm-3 inline">
+              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ></div>
+          </div>
+          <div ng-repeat="apiKey in retailer.apiKeys">
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">API Key [{{apiKey.category}}]</label>
+              <div class="col-lg-4">
+                <input class="form-control inline" type="text" placeholder="{{apiKey.token}}" disabled=""></div>
+              <div class="col-lg-2">
+                <a class="btn btn-default inline" ng-click="regenerateApiKey(apiKey)">Regenerate</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Development API Key [{{retailer.apiKeys[1].category}}]</label>
+            <div class="col-lg-4">
+              <input class="form-control" type="text" placeholder="retailer.apiKeys[1].token" disabled=""></div>
+            <div class="col-lg-2">
+              <a class="btn btn-default inline" ng-click="regenerateApiKey(retailer.apiKeys[1])">Regenerate</a>
+            </div>
+          </div> -->
+
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-2">
+              <button type="submit" class="btn btn-default">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </form>
+      </tab>
+
+    </tabset>
+
+  </div>
+  <!-- / tab -->
+
+</div>

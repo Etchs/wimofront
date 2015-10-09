@@ -21,6 +21,31 @@ angular.module('app')
           }
         });*/
 
+				$rootScope.$on('$stateChangeStart',
+			      function (event, toState, toParams, fromState, fromParams) {
+			      	var token = $localStorage.tokenObj? $localStorage.tokenObj.token : false;
+			      	if(toState.url != '/signin' && !token){
+			      		event.preventDefault();
+			        	console.log("No token! Going to signin page: ");
+			        	$state.go('access.signin');
+				    } else if (toState.url != '/signin' && token) {
+				    	var expiryTime = $localStorage.tokenObj.expires;
+			        	var now = new Date().getTime();
+			        	if(now > expiryTime){
+			        		event.preventDefault();
+				        	console.log("Token expired! Going to signin page");
+				        	$state.go('access.signin');
+			        	} else if(toState.url == '/signin') {
+			        		// An authenticated user trying to go to login page
+			        		// redirecting to default page after successful login
+			        		$state.go('app.page.neworder');
+			        	} else {
+			        		console.log("Going to page: ", toParams);
+			        	}
+				    }
+
+		        });
+
 			}
 		]
 	)
@@ -239,7 +264,7 @@ angular.module('app')
 					.state('app.page.details', {
 						url: '/details',
 						templateUrl: 'tpl/page_details.html',
-						resolve: load('js/controllers/chart.js')
+						resolve: load(['js/controllers/chart.js', 'js/controllers/viewRetailer.js', 'js/controllers/updateRetailer.js'])
 					})
 					.state('app.page.retailers', {
 						url: '/retailers',
@@ -247,7 +272,8 @@ angular.module('app')
 					})
 					.state('app.page.addvendor', {
 						url: '/addvendor',
-						templateUrl: 'tpl/page_addvendor.html'
+						templateUrl: 'tpl/page_addvendor.html',
+						resolve: load(['angularFileUpload', 'js/controllers/createRetailer.js'])
 					})
 					.state('app.page.couriers', {
 						url: '/couriers',

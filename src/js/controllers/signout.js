@@ -10,7 +10,8 @@ app.controller('SignoutFormController', ['$scope', '$state', 'LoggedInRestangula
         function (res) {
           console.log('res');
           console.log(res);
-          $localStorage.access_token = null;
+          $localStorage.tokenObj = null;
+          $localStorage.me = null;
           $state.go('access.signin');
         },
         function (err) {

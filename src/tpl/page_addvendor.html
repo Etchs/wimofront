@@ -2,10 +2,13 @@
   <h1 class="m-n font-thin h3">eRetailers</h1>
 </div>
 <div class="wrapper-md">
-  <div ng-controller="FormDemoCtrl">
+  <div ng-controller="CreateRetailerCtrl">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
-      <form name="formValidate" class="form-horizontal form-validation">
+      <form name="newRetailerForm" class="form-horizontal form-validation">
+          <div class="text-danger wrapper text-center" ng-show="authError">
+              {{error}}
+          </div>
           <div class="panel panel-default">
             <div class="panel-heading">
               <strong>Add New eRetailer</strong>
@@ -16,13 +19,13 @@
                 <div class="col-sm-9">
                   <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="New" ng-model="retailer.retailerType" checked>
                 New
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="Branch" ng-model="retailer.retailerType">
                 Branch
               </label>
             </div>
@@ -32,25 +35,25 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label">Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" placeholder="eRetailer Company Name" ng-model="eretailer.name" required >
+                    <input type="text" class="form-control" placeholder="eRetailer Company Name" ng-model="retailer.name" required >
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg pull-in"></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Website</label>
                 <div class="col-sm-9">
-                    <input type="url" class="form-control ng-pristine ng-valid-url ng-invalid ng-invalid-required ng-touched" placeholder="http://" ng-model="eretailer.url" required="" tabindex="0" aria-required="true" aria-invalid="true" style="">
+                    <input type="url" class="form-control ng-pristine ng-valid-url ng-invalid ng-invalid-required ng-touched" placeholder="http://" ng-model="retailer.website" required="" tabindex="0" aria-required="true" aria-invalid="true" style="">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg pull-in"></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Category</label>
                 <div class="col-sm-9">
-                  <select class="form-control" ng-model="eretailer.cat" required >
+                  <select class="form-control" ng-model="retailer.category" required >
                       <option value="">Please choose</option>
-                      <option value="foo">E-Commerce</option>
-                      <option value="bar">Super Market</option>
-                      <option value="new">Hyper Market</option>
+                      <option value="E-Commerce">E-Commerce</option>
+                      <option value="Super Market">Super Market</option>
+                      <option value="Hyper Market">Hyper Market</option>
                   </select>
                 </div>
               </div>
@@ -64,7 +67,8 @@
             </div>
             <footer class="panel-footer text-right bg-light lter">
               <a ui-sref="app.page.retailers" class="btn btn-rounded">Cancel</a>
-              <button type="submit" class="btn btn-lg w-xs btn-success btn-rounded">Add</button>
+              <button type="button" class="btn btn-lg w-xs btn-success btn-rounded" ng-click="uploader.queue[0].upload()" ng-if="!uploader.getNotUploadedItems().length && newRetailerForm.$invalid">Add</button>
+              <button type="button" class="btn btn-lg w-xs btn-success btn-rounded" ng-click="createRetailer()" ng-if="uploader.getNotUploadedItems().length && newRetailerForm.$invalid">Add</button>
             </footer>
           </div>
         </form>
