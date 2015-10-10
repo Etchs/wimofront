@@ -9,8 +9,9 @@
     <div class="panel-heading">
       All eRetailers
     </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
+    <div class="table-responsive" ng-controller="ViewRetailersCtrl">
+      <table ui-jq="footable" class="table table-striped b-t b-b">
+      <!-- <table ui-jq="dataTable" ui-options="{
           sAjaxSource: 'api/retailers.json',
           aoColumns: [
             { mData: 'Logo' },
@@ -21,7 +22,7 @@
             { mData: 'Shipped' },
             { mData: 'Income' }
           ]
-        }" class="table table-striped b-t b-b">
+        }" class="table table-striped b-t b-b"> -->
         <thead>
           <tr>
             <th  style="width:10%">Logo</th>
@@ -31,12 +32,26 @@
             <th  style="width:10%">Deliveries</th>
             <th  style="width:15%">Shipped</th>
             <th  style="width:15%">Total Income</th>
-
-
           </tr>
         </thead>
         <tbody>
+          <tr ng-repeat="retailer in retailers track by retailer._id">
+            <td>{{retailer.logo}}</td>
+            <td ng-click="retailerDetails(retailer)">{{retailer.name}}</td>
+            <td>{{retailer.category}}</td>
+            <td><i class="fa fa-circle text-success"></i> Good</td>
+            <td>{{retailer.deliveries  | number:0}}</td>
+            <td>{{retailer.shipped  | number:0}} KG</td>
+            <td>{{retailer.totalIncome  | number:2}}</td>
+          </tr>
         </tbody>
+        <tfoot class="hide-if-no-paging">
+          <tr>
+            <td colspan="9" class="text-center">
+              <ul class="pagination"></ul>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>

@@ -9,17 +9,6 @@ angular.module('app')
 			function($rootScope, $state, $stateParams, $localStorage) {
 				$rootScope.$state = $state;
 				$rootScope.$stateParams = $stateParams;
-        // if($localStorage.access_token) $state.go('app.dashboard-v1');
-        // else $state.go('access.signin');
-        
-        /*$rootScope.on('$locationChangeStart', function(event, next, current) {
-          // check for the user's token and that we aren't going to the login view
-          console.log('going to: ', next);
-          if(!$localStorage.access_token && next.templateUrl != 'tpl/page_signin.html'){
-            // go to the login view
-            $state.go('access.signin');
-          }
-        });*/
 
 				$rootScope.$on('$stateChangeStart',
 			      function (event, toState, toParams, fromState, fromParams) {
@@ -28,19 +17,23 @@ angular.module('app')
 			      		event.preventDefault();
 			        	console.log("No token! Going to signin page: ");
 			        	$state.go('access.signin');
-				    } else if (toState.url != '/signin' && token) {
+				    } else if(toState.url != '/signin' && token) {
 				    	var expiryTime = $localStorage.tokenObj.expires;
 			        	var now = new Date().getTime();
 			        	if(now > expiryTime){
 			        		event.preventDefault();
 				        	console.log("Token expired! Going to signin page");
 				        	$state.go('access.signin');
-			        	} else if(toState.url == '/signin') {
-			        		// An authenticated user trying to go to login page
-			        		// redirecting to default page after successful login
-			        		$state.go('app.page.neworder');
 			        	} else {
 			        		console.log("Going to page: ", toParams);
+			        	}
+				    } else if(toState.url == '/signin' && token) {
+				    	var expiryTime = $localStorage.tokenObj.expires;
+			        	var now = new Date().getTime();
+			        	if(now < expiryTime){
+			        		event.preventDefault();
+				        	console.log("Token not expired! Redirecting to default page");
+				        	$state.go('app.page.neworder');
 			        	}
 				    }
 
@@ -259,7 +252,8 @@ angular.module('app')
 					})
 					.state('app.page.transactions', {
 						url: '/transactions',
-						templateUrl: 'tpl/page_transactions.html'
+						templateUrl: 'tpl/page_transactions.html',
+						resolve: load(['js/controllers/viewTransactions.js'])
 					})
 					.state('app.page.transaction', {
 						url: '/transaction',
@@ -272,7 +266,8 @@ angular.module('app')
 					})
 					.state('app.page.retailers', {
 						url: '/retailers',
-						templateUrl: 'tpl/page_retailers.html'
+						templateUrl: 'tpl/page_retailers.html',
+						resolve: load(['js/controllers/viewRetailers.js'])
 					})
 					.state('app.page.addvendor', {
 						url: '/addvendor',
@@ -281,7 +276,8 @@ angular.module('app')
 					})
 					.state('app.page.couriers', {
 						url: '/couriers',
-						templateUrl: 'tpl/page_couriers.html'
+						templateUrl: 'tpl/page_couriers.html',
+						resolve: load(['js/controllers/viewCouriers.js'])
 					})
 					.state('app.page.neworder', {
 						url: '/neworder',

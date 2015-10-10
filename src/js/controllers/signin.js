@@ -5,10 +5,6 @@
 app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStorage', 'Restangular', function($scope, $http, $state, $localStorage, Restangular) {
   $scope.user = {};
 
-  if ($localStorage.access_token) {
-    $state.go('app.dashboard-v1');
-  }
-
   $scope.login = function() {
       Restangular.all('auth/login').post($scope.user).then(function(data) {
         $localStorage.me = data;

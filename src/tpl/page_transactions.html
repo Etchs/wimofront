@@ -18,8 +18,9 @@
     <div class="panel-heading">
       All Transactions
     </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
+    <div class="table-responsive" ng-controller="ViewTransactionsCtrl">
+      <table ui-jq="footable" class="table table-striped b-t b-b">
+      <!-- <table ui-jq="dataTable" ui-options="{
           sAjaxSource: 'api/datatable.json',
           aoColumns: [
             { mData: 'index' },
@@ -32,7 +33,7 @@
             { mData: 'price' },
             { mData: 'payment' }
           ]
-        }" class="table table-striped b-t b-b">
+        }" class="table table-striped b-t b-b"> -->
         <thead>
           <tr>
             <th style="width:10%">ID</th>
@@ -44,11 +45,28 @@
             <th style="width:14%">Date</th>
             <th style="width:10%">Income</th>
             <th style="width:10%">Payment</th>
-
           </tr>
         </thead>
         <tbody>
+          <tr ng-repeat="transaction in transactions track by transaction._id">
+            <td ng-click="transactionDetails(transaction)">{{transaction._id}}</td>
+            <td>{{transaction.retailerId.name}}</td>
+            <td>{{transaction.CourierId.name}}</td>
+            <td>{{transaction.weight.value  | number:0}} {{transaction.weight.Unit}}</td>
+            <td>{{transaction.Status}}</td>
+            <td>{{transaction.Mobile}}</td>
+            <td>{{transaction.Date | date : 'dd-MMM-yy hh:mm a'}}</td>
+            <td>{{transaction.Income  | number:2}}</td>
+            <td>{{transaction.Payment}}</td>
+          </tr>
         </tbody>
+        <tfoot class="hide-if-no-paging">
+          <tr>
+            <td colspan="9" class="text-center">
+              <ul class="pagination"></ul>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>

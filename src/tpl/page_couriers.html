@@ -6,8 +6,9 @@
     <div class="panel-heading">
       All Couriers
     </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
+    <div class="table-responsive" ng-controller="ViewCouriersCtrl">
+      <table ui-jq="footable" class="table table-striped b-t b-b">
+      <!-- <table ui-jq="dataTable" ui-options="{
           sAjaxSource: 'api/couriers.json',
           aoColumns: [
             { mData: 'Logo' },
@@ -18,7 +19,7 @@
             { mData: 'Shipped' },
             { mData: 'Income' }
           ]
-        }" class="table table-striped b-t b-b">
+        }" class="table table-striped b-t b-b"> -->
         <thead>
           <tr>
             <th  style="width:10%">Logo</th>
@@ -28,11 +29,27 @@
             <th  style="width:10%">Deliveries</th>
             <th  style="width:15%">Shipped</th>
             <th  style="width:15%">Total Income</th>
-
           </tr>
         </thead>
         <tbody>
+          <tr ng-repeat="courier in couriers track by courier._id" ng-init="stars=getStars(courier.rating)">
+            <td>{{courier.logo}}</td>
+            <td ng-click="courierDetails(courier)">{{courier.name}}</td>
+            <td><i class="fa fa-star text-warning" ng-repeat="n in stars"></i></td>
+            <!-- <td>{{courier.rating}}</td> -->
+            <td><i class="fa fa-circle text-success"></i> Good</td>
+            <td>{{courier.deliveries  | number:0}}</td>
+            <td>{{courier.shipped  | number:0}} KG</td>
+            <td>{{courier.totalIncome  | number:2}}</td>
+          </tr>
         </tbody>
+        <tfoot class="hide-if-no-paging">
+          <tr>
+            <td colspan="9" class="text-center">
+              <ul class="pagination"></ul>
+            </td>
+          </tr>
+        </tfoot>
       </table>
 
     </div>

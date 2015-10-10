@@ -67,8 +67,8 @@
             </div>
             <footer class="panel-footer text-right bg-light lter">
               <a ui-sref="app.page.retailers" class="btn btn-rounded">Cancel</a>
-              <button type="button" class="btn btn-lg w-xs btn-success btn-rounded" ng-click="uploader.queue[0].upload()" ng-if="!uploader.getNotUploadedItems().length && !newRetailerForm.$invalid">Add</button>
-              <button type="button" class="btn btn-lg w-xs btn-success btn-rounded" ng-click="createRetailer()" ng-if="uploader.getNotUploadedItems().length && !newRetailerForm.$invalid">Add</button>
+              <button type="button" class="btn btn-lg w-xs btn-success btn-rounded" ng-click="uploader.queue[0].upload()" ng-if="fileAdded && !newRetailerForm.$invalid">Add</button>
+              <button type="button" class="btn btn-lg w-xs btn-success btn-rounded" ng-click="createRetailer()" ng-if="!fileAdded && !newRetailerForm.$invalid">Add</button>
             </footer>
           </div>
         </form>

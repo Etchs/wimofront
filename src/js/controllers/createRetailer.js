@@ -11,7 +11,13 @@ app.controller('CreateRetailerCtrl', ['$scope', '$localStorage', '$state', 'File
       }
     });
 
+    uploader.onAfterAddingFile = function (fileItem) {
+      $scope.fileAdded = true;
+      console.info('onAfterAddingFile', fileItem);
+    };
+
     uploader.onBeforeUploadItem = function (item) {
+      console.log($scope.retailer);
       // item.headers.fileName = item._file.name;
       item.headers.retailer = $scope.retailer;
     };
@@ -26,6 +32,8 @@ app.controller('CreateRetailerCtrl', ['$scope', '$localStorage', '$state', 'File
     };
 
     $scope.createRetailer = function(){
+      console.log('$scope.retailer');
+      console.log($scope.retailer);
       LoggedInRestangular.all('retailer').post({retailer: $scope.retailer}).then(function(createdRetailer) {
         $state.go('app.page.retailers');
       }, function(err) {
