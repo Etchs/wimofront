@@ -4,8 +4,8 @@
 
 // View Retailer controller
 app.controller('ViewRetailerCtrl', ['$scope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $stateParams, $state, LoggedInRestangular) {
-  // $scope.retailer = $stateParams.retailer;
-  $scope.retailer = {
+  $scope.retailer = $stateParams.retailer;
+  /*$scope.retailer = {
     accountStatus: false,
     name: 'Namshi',
     category: 'E-commerce',
@@ -25,6 +25,6 @@ app.controller('ViewRetailerCtrl', ['$scope', '$stateParams', '$state', 'LoggedI
       expired: false,
       category: 'production'
     }]
-  };
+  };*/
 
 }]);

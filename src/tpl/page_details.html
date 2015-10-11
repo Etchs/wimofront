@@ -125,43 +125,44 @@
               </span>
             </div>
           </div>
-
-          <div class="line line-dashed b-b line-lg pull-in"></div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">
-              <img src="img/aramex.png" class="img-rounded m-r-xs thumb-xs" />
-              Aramex
-            </label>
-            <div class="col-sm-10 inline">
-              <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-                <input type="checkbox" checked="">
-                <i></i>
+          <div ng-repeat="courier in couriers" ><!-- ng-init="perCourierInfo[courier._id]={};perCourierInfo[courier._id].markup={}" -->
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+                <img src="" class="img-rounded m-r-xs thumb-xs" />
+                {{courier.name}}
               </label>
+              <div class="col-sm-10 inline">
+                <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                  <input type="checkbox" ng-checked="courierActivated(courier)" ng-click="updateSelection(courier)">
+                  <i></i>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Markup</label>
-            <div class="col-sm-2 inline">
-              <input type="number" class="form-control" placeholder="5" ng-model="g.d" required ></div>
-            <div class="col-sm-1 inline">
-              <select name="account" class="form-control">
-                <option value="option 1">%</option>
-                <option value="option 2">AED</option>
-              </select>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Markup</label>
+              <div class="col-sm-2 inline">
+                <input type="number" class="form-control" placeholder="5" ng-model="perCourierInfo[courier._id].markup.value" required ></div>
+              <div class="col-sm-1 inline">
+                <select name="account" class="form-control" ng-model="perCourierInfo[courier._id].markup.category">
+                  <option value="percent">%</option>
+                  <option value="AED">AED</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Account Username</label>
-            <div class="col-sm-3 inline">
-              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required ></div>
-          </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Account Username</label>
+              <div class="col-sm-3 inline">
+                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required ng-model="perCourierInfo[courier._id].userName"></div>
+            </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Account Password</label>
-            <div class="col-sm-3 inline">
-              <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Account Password</label>
+              <div class="col-sm-3 inline">
+                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ng-model="perCourierInfo[courier._id].password"></div>
+            </div>
           </div>
 
           <div class="line line-dashed b-b line-lg pull-in"></div>
@@ -239,6 +240,7 @@
             <div class="col-sm-3 inline">
               <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ></div>
           </div>
+          
           <div ng-repeat="apiKey in retailer.apiKeys">
             <div class="line line-dashed b-b line-lg pull-in"></div>
             <div class="form-group">
