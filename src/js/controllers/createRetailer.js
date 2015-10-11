@@ -18,8 +18,8 @@ app.controller('CreateRetailerCtrl', ['$scope', '$localStorage', '$state', 'File
 
     uploader.onBeforeUploadItem = function (item) {
       console.log($scope.retailer);
-      // item.headers.fileName = item._file.name;
-      item.headers.retailer = $scope.retailer;
+      item.headers.fileName = item._file.name;
+      item.headers.retailer = JSON.stringify($scope.retailer);
     };
 
     uploader.onSuccessItem = function (fileItem, response, status, headers) {
@@ -34,7 +34,7 @@ app.controller('CreateRetailerCtrl', ['$scope', '$localStorage', '$state', 'File
     $scope.createRetailer = function(){
       console.log('$scope.retailer');
       console.log($scope.retailer);
-      LoggedInRestangular.all('retailer').post({retailer: $scope.retailer}).then(function(createdRetailer) {
+      LoggedInRestangular.all('retailer').post({retailer: JSON.stringify($scope.retailer)}).then(function(createdRetailer) {
         $state.go('app.page.retailers');
       }, function(err) {
         $scope.error = 'Error creating new eRetailer!';
