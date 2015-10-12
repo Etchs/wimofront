@@ -262,6 +262,7 @@ angular.module('app')
 					.state('app.page.details', {
 						url: '/details',
 						templateUrl: 'tpl/page_details.html',
+						params: {retailer: null},
 						resolve: load(['js/controllers/chart.js', 'js/controllers/viewRetailer.js', 'js/controllers/updateRetailer.js'])
 					})
 					.state('app.page.retailers', {

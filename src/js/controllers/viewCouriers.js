@@ -21,7 +21,6 @@ app.controller('ViewCouriersCtrl', ['$scope', '$stateParams', '$state', 'LoggedI
 	};
 
 	$scope.getStars = function(stars) {
-		console.log('okk');
 		var arr = [];
 		for (var i = 0; i < stars; i++) {
 			arr.push(i);

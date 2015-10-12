@@ -28,18 +28,24 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
     });
 
   $scope.updateRetailer = function() {
-    $window._.each($scope.retailer, function(val, key) {
+    var retailer = LoggedInRestangular.copy($scope.retailer);
+    console.log(retailer);
+    $window._.each(retailer, function(val, key) {
       if ($window._.isNull(val) || $window._.isUndefined(val)) {
-        delete $scope.retailer[key];
+        delete retailer[key];
       }
     });
 
-    $scope.retailer.put().then(function(updatedRetailer) {
+    retailer.put().then(function(updatedRetailer) {
       // success(updatedRetailer);
       $state.go('app.page.retailers');
     }, function(err) {
       console.log(err);
     });
+  };
+
+  $scope.cancel = function(){
+    $state.go('app.page.retailers');
   };
 
   $scope.courierActivated = function(courier){

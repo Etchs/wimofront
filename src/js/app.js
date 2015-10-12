@@ -27,6 +27,9 @@ app.config(['RestangularProvider',
 			RestangularProvider.setDefaultHttpFields({
 				withCredentials: true
 			});
+			RestangularProvider.setRestangularFields({
+			  id: "_id"
+			});
 		}
 	])
 	.factory('LoggedInRestangular', ['$localStorage', 'Restangular', function($localStorage, Restangular) {

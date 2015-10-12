@@ -33,7 +33,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="courier in couriers track by courier._id" ng-init="stars=getStars(courier.rating)">
-            <td>{{courier.logo}}</td>
+            <td><a class="thumb-md pull-left m-r"><img class="img-thumbnail" src="{{courier.image}}" /></a></td>
             <td ng-click="courierDetails(courier)">{{courier.name}}</td>
             <td><i class="fa fa-star text-warning" ng-repeat="n in stars"></i></td>
             <!-- <td>{{courier.rating}}</td> -->
