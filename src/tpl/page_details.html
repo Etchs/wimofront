@@ -44,7 +44,7 @@
             <div class="clearfix text-center m-t-sm m-b-xs">
               <div class="inline">
                 <div class="thumb-xl">
-                  <img src="img/namshi.png" class="img-thumbnail" alt="..."></div>
+                  <img src="{{imageBase}}{{retailer._id}}" class="img-thumbnail" alt="..."></div>
                 <div class="h3 m-t m-b-xs">{{retailer.name}}</div>
                 <small class="text-muted m-b">{{retailer.category}}</small>
               </div>
@@ -112,12 +112,12 @@
         <tab-heading> <i class="fa fa-gear"></i>
           Configuration
         </tab-heading>
-        <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled">
+        <form name="retailerForm" class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-date-disabled">
           <div class="form-group">
             <label class="col-sm-2 control-label">Account Status</label>
             <div class="col-sm-10 inline">
               <label class="i-switch i-switch-md bg-success m-t-xs m-r">
-                <input type="checkbox" ng-model="retailer.accountStatus">
+                <input type="checkbox" name="accountStatus" ng-model="retailer.accountStatus">
                 <i></i>
               </label>
               <span class="help-block m-b-none">
@@ -134,7 +134,7 @@
               </label>
               <div class="col-sm-10 inline">
                 <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-                  <input type="checkbox" ng-checked="courierActivated(courier)" ng-click="updateSelection(courier)">
+                  <input type="checkbox" name="courierActivated-{{courier._id}}" ng-checked="courierActivated(courier)" ng-click="updateSelection($event, courier)">
                   <i></i>
                 </label>
               </div>
@@ -143,9 +143,9 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Markup</label>
               <div class="col-sm-2 inline">
-                <input type="number" class="form-control" placeholder="5" ng-model="perCourierInfo[courier._id].markup.value" required ></div>
+                <input type="number" name="markupValue-{{courier._id}}" class="form-control" placeholder="5" ng-model="perCourierInfo[courier._id].markup.value" ng-required="courierActivated(courier)" ></div>
               <div class="col-sm-1 inline">
-                <select name="account" class="form-control" ng-model="perCourierInfo[courier._id].markup.category">
+                <select name="markupCategory-{{courier._id}}" class="form-control" ng-model="perCourierInfo[courier._id].markup.category" ng-required="courierActivated(courier)">
                   <option value="percent">%</option>
                   <option value="AED">AED</option>
                 </select>
@@ -155,13 +155,13 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Account Username</label>
               <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="bahaa498@gmail.com" required ng-model="perCourierInfo[courier._id].userName"></div>
+                <input type="text" name="markupUserName-{{courier._id}}" class="form-control" placeholder="bahaa498@gmail.com" ng-model="perCourierInfo[courier._id].userName"></div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2 control-label">Account Password</label>
               <div class="col-sm-3 inline">
-                <input type="text" class="form-control" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" placeholder="kbasd#!27ZsjT" required ng-model="perCourierInfo[courier._id].password"></div>
+                <input type="text" name="markupPassword-{{courier._id}}" class="form-control" placeholder="kbasd#!27ZsjT" ng-required="perCourierInfo[courier._id].userName" ng-model="perCourierInfo[courier._id].password"></div>
             </div>
           </div>
           
@@ -170,7 +170,7 @@
             <div class="form-group">
               <label class="col-lg-2 control-label">API Key [{{apiKey.category}}]</label>
               <div class="col-lg-4">
-                <input class="form-control inline" type="text" placeholder="{{apiKey.token}}" disabled=""></div>
+                <input class="form-control inline" type="text" value="{{apiKey.token}}" disabled=""></div>
               <div class="col-lg-2">
                 <a class="btn btn-default inline" ng-click="regenerateApiKey(apiKey)">Regenerate</a>
               </div>

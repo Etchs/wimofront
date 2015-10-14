@@ -13,13 +13,19 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
       $scope.couriers = couriers;
       for (var i = 0; i < couriers.length; i++) {
         var courier = couriers[i];
-        perCourierInfo[courier._id]={markup:{}};
-        var courierInfo = $window._.findWhere($scope.retailer.perCourierInfo, {_id: courier._id});
+        $scope.perCourierInfo[courier._id]={markup:{}};
+        var courierInfo = $window._.findWhere($scope.retailer.perCourierInfo, {courierId: courier._id});
         if(courierInfo){
-          perCourierInfo[courier._id].markup.category = courierInfo.markup.category;
-          perCourierInfo[courier._id].markup.value = courierInfo.markup.value;
-          perCourierInfo[courier._id].userName = courierInfo.userName;
-          perCourierInfo[courier._id].password = courierInfo.password;
+          if(courierInfo.markup && courierInfo.markup.category){
+            $scope.perCourierInfo[courier._id].markup.category = courierInfo.markup.category;
+          }
+          if(courierInfo.markup && courierInfo.markup.value){
+            $scope.perCourierInfo[courier._id].markup.value = courierInfo.markup.value;
+          }
+          if(courierInfo.userName)
+            $scope.perCourierInfo[courier._id].userName = courierInfo.userName;
+          if(courierInfo.password)
+            $scope.perCourierInfo[courier._id].password = courierInfo.password;
         }
       }
     },
@@ -28,20 +34,38 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
     });
 
   $scope.updateRetailer = function() {
-    var retailer = LoggedInRestangular.copy($scope.retailer);
-    console.log(retailer);
-    $window._.each(retailer, function(val, key) {
-      if ($window._.isNull(val) || $window._.isUndefined(val)) {
-        delete retailer[key];
-      }
-    });
+    if (!this.retailerForm.$invalid) {
+      $scope.retailer.perCourierInfo = $window._.map($scope.perCourierInfo, function(courierInfo, courierId){
+        var result = {
+          courierId: courierId
+        };
+        if(!$window._.isEmpty(courierInfo.markup)){
+          result.markup = courierInfo.markup;
+        }
+        if(courierInfo.userName && courierInfo.password){
+          result.userName = courierInfo.userName;
+          result.password = courierInfo.password;
+        }
+        return result;
+      });
+      var retailer = LoggedInRestangular.copy($scope.retailer);
+      delete retailer.logo;
+      retailer.couriers = $window._.pluck($scope.retailer.couriers, '_id');
+      console.log('retailer');
+      console.log(retailer);
+      $window._.each(retailer, function(val, key) {
+        if ($window._.isNull(val) || $window._.isUndefined(val)) {
+          delete retailer[key];
+        }
+      });
 
-    retailer.put().then(function(updatedRetailer) {
-      // success(updatedRetailer);
-      $state.go('app.page.retailers');
-    }, function(err) {
-      console.log(err);
-    });
+      retailer.put().then(function(updatedRetailer) {
+        // success(updatedRetailer);
+        $state.go('app.page.retailers');
+      }, function(err) {
+        console.log(err);
+      });
+    }
   };
 
   $scope.cancel = function(){
@@ -50,7 +74,7 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
 
   $scope.courierActivated = function(courier){
     var result = false;
-    var couriersIds = $window._.pluck($scope.couriers, '_id');
+    var couriersIds = $window._.pluck($scope.retailer.couriers, '_id');
     if ($window._.contains(couriersIds, courier._id)){
       result = true;
     }
@@ -61,9 +85,9 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
   $scope.updateSelection = function($event, courier) {
       var checkbox = $event.target;
       var action = (checkbox.checked ? 'add' : 'remove');
-      if (action == 'add' && !$window._.find($scope.retailer.couriers, function(rcourier){ return courier._id == courier._id; })) $scope.retailer.couriers.push(courier);
-      if (action == 'remove' && $window._.find($scope.retailer.couriers, function(rcourier){ return courier._id == courier._id; })){
-        $scope.retailer.couriers = $window._.reject($scope.retailer.couriers, function(rcourier){ return courier._id == courier._id; });
+      if (action == 'add' && !$window._.find($scope.retailer.couriers, function(rcourier){ return rcourier._id == courier._id; })) $scope.retailer.couriers.push(courier);
+      if (action == 'remove' && $window._.find($scope.retailer.couriers, function(rcourier){ return rcourier._id == courier._id; })){
+        $scope.retailer.couriers = $window._.reject($scope.retailer.couriers, function(rcourier){ return rcourier._id == courier._id; });
       }
   };
   // $scope.activateCourier = function(courier){
@@ -73,6 +97,11 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
   $scope.regenerateApiKey = function(apiKey){
     $scope.retailer.post('apikey/regenerate', apiKey).then(function(updatedApiKey) {
       // TODO: update token of apiKey record in $scope.retailer.apiKeys array where apiKey.token (old apikey) = apiKey.token of the record
+      $window._.each($scope.retailer.apiKeys, function(apiKeyRecord) {
+        if (apiKeyRecord.token==apiKey.token) {
+          apiKeyRecord.token = updatedApiKey.token;
+        }
+      });
     }, function(err) {
       console.log(err);
     });

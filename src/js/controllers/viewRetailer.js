@@ -5,6 +5,7 @@
 // View Retailer controller
 app.controller('ViewRetailerCtrl', ['$scope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $stateParams, $state, LoggedInRestangular) {
   $scope.retailer = $stateParams.retailer;
+  $scope.imageBase = configuration.API_BASE_PATH + '/retailer/';
   /*$scope.retailer = {
     accountStatus: false,
     name: 'Namshi',

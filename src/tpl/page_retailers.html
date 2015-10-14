@@ -36,7 +36,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="retailer in retailers track by retailer._id">
-            <td><a class="thumb-md pull-left m-r"><img class="img-thumbnail" ng-src="{{retailer.image}}" /></a></td>
+            <td><a class="thumb-md pull-left m-r"><img class="img-thumbnail" ng-src="{{imageBase}}{{retailer._id}}" /></a></td>
             <td ng-click="retailerDetails(retailer)">{{retailer.name}}</td>
             <td>{{retailer.category}}</td>
             <td><i class="fa fa-circle text-success"></i> Good</td>
