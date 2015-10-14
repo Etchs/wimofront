@@ -11,16 +11,16 @@
 6. You should find a new virtual machine created in virtual box and running, you now need to access this machine from the terminal/bash by using this command "vagrant ssh" at the folder named 'wimofront'
 
 7. Now that the virtual machine is running in your terminal/bash, run these commands:
-   sudo npm install -g grunt-cli
-   sudo npm install -g bower
+   `sudo npm install -g grunt-cli`
+   `sudo npm install -g bower`
 
 8. navigate to /vagrant and run the following commands:
-	sudo npm install
-	grunt bower-install-simple
-	npm i -g lodash-cli
-	lodash modern -o ./lodash.js
-	sudo grunt build:angular
-	sudo npm start
+	`sudo npm install`
+	`grunt bower-install-simple`
+	`npm i -g lodash-cli`
+	`lodash modern -o ./lodash.js`
+	`sudo grunt build:angular`
+	`sudo npm start`
 	
 	
 	
