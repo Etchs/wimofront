@@ -13,12 +13,12 @@
     </li>       
   </ul>
 </div>
-<div class="wrapper-md">
+<div class="wrapper-md" ng-controller="ViewTransactionsCtrl">
   <div class="panel panel-default">
     <div class="panel-heading">
       All Transactions
     </div>
-    <div class="table-responsive" ng-controller="ViewTransactionsCtrl">
+    <div class="table-responsive">
       <table ui-jq="footable" class="table table-striped b-t b-b">
       <!-- <table ui-jq="dataTable" ui-options="{
           sAjaxSource: 'api/datatable.json',
@@ -69,5 +69,9 @@
         </tfoot>
       </table>
     </div>
+    <div>
+      <button type="button" class="btn" ng-click="createRandom()">Create Random Transactions</button>
+    </div>
+
   </div>
 </div>

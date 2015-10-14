@@ -7,6 +7,7 @@ app.controller('ViewTransactionsCtrl', ['$scope', '$stateParams', '$state', 'Log
 	// $scope.transactions = [];
 	LoggedInRestangular.all('transaction').getList().then(
 		function(transactions) {
+			console.log(transactions);
 			$scope.transactions = transactions;
 		},
 		function(err) {
@@ -17,6 +18,16 @@ app.controller('ViewTransactionsCtrl', ['$scope', '$stateParams', '$state', 'Log
 		/*$state.go('app.page.', {
 			transaction: transaction
 		});*/
+	};
+
+	$scope.createRandom = function(){
+		LoggedInRestangular.all('createRandom').post().then(function(res) {
+	        $state.go('app.page.transactions', {}, {
+	              reload: true
+	            });
+	      }, function(err) {
+	        console.log('Error creating random transactions!');
+	      });
 	};
 
 }]);
