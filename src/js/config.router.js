@@ -260,10 +260,10 @@ angular.module('app')
 						templateUrl: 'tpl/page_transaction.html'
 					})
 					.state('app.page.details', {
-						url: '/details',
+						url: '/details/:retailerId',
 						templateUrl: 'tpl/page_details.html',
 						params: {retailer: null},
-						resolve: load(['js/controllers/chart.js', 'js/controllers/viewRetailer.js', 'js/controllers/updateRetailer.js'])
+						resolve: load(['js/controllers/chart.js', 'js/controllers/updateRetailer.js'])
 					})
 					.state('app.page.retailers', {
 						url: '/retailers',

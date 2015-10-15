@@ -3,12 +3,13 @@
 /* Controllers */
 
 // View Couriers controller
-app.controller('ViewCouriersCtrl', ['$scope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $stateParams, $state, LoggedInRestangular) {
+app.controller('ViewCouriersCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $rootScope, $stateParams, $state, LoggedInRestangular) {
 	// $scope.couriers = [];
 	LoggedInRestangular.all('courier').getList().then(
 		function(couriers) {
 			console.log(couriers);
 			$scope.couriers = couriers;
+			$rootScope.couriersNum = couriers.length;
 		},
 		function(err) {
 			console.log('error getting couriers', err);

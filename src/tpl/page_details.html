@@ -35,7 +35,7 @@
 
   </ul>
 </div>
-<div class="wrapper-md" ng-controller="ViewRetailerCtrl">
+<div class="wrapper-md" ng-controller="UpdateRetailerCtrl">
   <div ng-controller="FlotChartDemoCtrl">
     <div class="row">
       <div class="col-md-4">
@@ -55,7 +55,7 @@
               <div class="row">
                 <div class="col-xs-6">
                   <small class="text-muted block">Transcations</small>
-                  <span class="text-md">{{retailer.deliveries | number:0}}</span>
+                  <span class="text-md">{{retailerTransactionsNum | number:0}}</span>
                 </div>
                 <div class="col-xs-6">
                   <small class="text-muted block">Income</small>
@@ -98,7 +98,7 @@
   </div>
 
   <!-- tab -->
-  <div ng-controller="UpdateRetailerCtrl">
+  <div>
     <tabset class="tab-container">
 
       <tab>

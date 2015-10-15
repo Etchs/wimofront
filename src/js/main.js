@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 
-    function(              $scope,   $translate,   $localStorage,   $window ) {
+  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 'LoggedInRestangular', '$rootScope',
+    function(              $scope,   $translate,   $localStorage,   $window ,  LoggedInRestangular,   $rootScope) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
@@ -74,5 +74,32 @@ angular.module('app')
           // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
           return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
       }
+
+      LoggedInRestangular.all('courier').getList().then(
+        function(couriers) {
+          // $scope.couriers = couriers;
+          $rootScope.couriersNum = couriers.length;
+        },
+        function(err) {
+          console.log('error getting couriers', err);
+        });
+
+      LoggedInRestangular.all('retailer').getList().then(
+        function(retailers) {
+          // $scope.retailers = retailers;
+          $rootScope.retailersNum = retailers.length;
+        },
+        function(err) {
+          console.log('error getting retailers', err);
+        });
+
+      LoggedInRestangular.all('transaction').getList().then(
+        function(transactions) {
+          // $scope.transactions = transactions;
+          $rootScope.transactionsNum = transactions.length;
+        },
+        function(err) {
+          console.log('error getting transactions', err);
+        });
 
   }]);

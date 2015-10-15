@@ -7,7 +7,7 @@
 
   <li>
     <a ui-sref="app.page.retailers">
-    <b class="badge bg-success pull-right">20</b>
+    <b class="badge bg-success pull-right">{{$root.retailersNum}}</b>
     <i class="fa fa-shopping-cart text-success-dker"></i>
       <span class="font-bold" translate="aside.nav.ERETAILERS">eRetailers</span>
     </a>
@@ -15,7 +15,7 @@
 
   <li>
     <a ui-sref="app.page.couriers">
-    <b class="badge bg-primary pull-right">3</b>
+    <b class="badge bg-primary pull-right">{{$root.couriersNum}}</b>
     <i class="fa fa-car text-primary-dker"></i>
       <span class="font-bold" translate="aside.nav.COURIERS">Couriers</span>
     </a>
@@ -23,7 +23,7 @@
 
   <li>
     <a ui-sref="app.page.transactions">
-    <b class="badge bg-info pull-right">2k</b>
+    <b class="badge bg-info pull-right">{{$root.transactionsNum}}</b>
     <i class="fa fa-dollar icon text-info-dker"></i>
       <span class="font-bold" translate="aside.nav.TRANS">Transactions</span>
     </a>

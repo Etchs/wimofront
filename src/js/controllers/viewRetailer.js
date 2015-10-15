@@ -1,11 +1,12 @@
 'use strict';
-
+// DEPRECATED
 /* Controllers */
 
 // View Retailer controller
-app.controller('ViewRetailerCtrl', ['$scope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $stateParams, $state, LoggedInRestangular) {
-  $scope.retailer = $stateParams.retailer;
-  $scope.imageBase = configuration.API_BASE_PATH + '/retailer/';
+app.controller('ViewRetailerCtrl', ['$scope', '$stateParams', '$state', '$window', 'LoggedInRestangular', function($scope, $stateParams, $state, $window, LoggedInRestangular) {
+  // $scope.retailer = $stateParams.retailer;
+  
+  
   /*$scope.retailer = {
     accountStatus: false,
     name: 'Namshi',

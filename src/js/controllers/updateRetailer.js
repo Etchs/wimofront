@@ -7,31 +7,61 @@ app.controller('UpdateRetailerCtrl', ['$scope', '$stateParams', '$localStorage',
   // $scope.retailer = $stateParams.retailer;
   $scope.perCourierInfo = {};
   $scope.couriers = [];
-  LoggedInRestangular.all('courier').getList().then(
-    function(couriers) {
-      console.log(couriers);
-      $scope.couriers = couriers;
-      for (var i = 0; i < couriers.length; i++) {
-        var courier = couriers[i];
-        $scope.perCourierInfo[courier._id]={markup:{}};
-        var courierInfo = $window._.findWhere($scope.retailer.perCourierInfo, {courierId: courier._id});
-        if(courierInfo){
-          if(courierInfo.markup && courierInfo.markup.category){
-            $scope.perCourierInfo[courier._id].markup.category = courierInfo.markup.category;
+  var retailerId = $stateParams.retailerId;
+  LoggedInRestangular.one('retailer', retailerId).get().then(  
+    function(retailer) {
+      delete retailer.logo;
+      $scope.retailer = retailer;
+
+      LoggedInRestangular.all('transaction').getList().then(
+        function(transactions) {
+
+          var filteredTransactions = $window._.filter(transactions, function(transaction){
+            if(transaction.retailerId._id == $scope.retailer._id){
+              return true;
+            } else {
+              return false;
+            }
+          });
+          $scope.retailerTransactionsNum = filteredTransactions.length;
+
+        },
+        function(err) {
+          console.log('error getting transactions', err);
+        });
+
+      LoggedInRestangular.all('courier').getList().then(
+        function(couriers) {
+          console.log(couriers);
+          $scope.couriers = couriers;
+          for (var i = 0; i < couriers.length; i++) {
+            var courier = couriers[i];
+            $scope.perCourierInfo[courier._id]={markup:{}};
+            var courierInfo = $window._.findWhere($scope.retailer.perCourierInfo, {courierId: courier._id});
+            if(courierInfo){
+              if(courierInfo.markup && courierInfo.markup.category){
+                $scope.perCourierInfo[courier._id].markup.category = courierInfo.markup.category;
+              }
+              if(courierInfo.markup && courierInfo.markup.value){
+                $scope.perCourierInfo[courier._id].markup.value = courierInfo.markup.value;
+              }
+              if(courierInfo.userName)
+                $scope.perCourierInfo[courier._id].userName = courierInfo.userName;
+              if(courierInfo.password)
+                $scope.perCourierInfo[courier._id].password = courierInfo.password;
+            }
           }
-          if(courierInfo.markup && courierInfo.markup.value){
-            $scope.perCourierInfo[courier._id].markup.value = courierInfo.markup.value;
-          }
-          if(courierInfo.userName)
-            $scope.perCourierInfo[courier._id].userName = courierInfo.userName;
-          if(courierInfo.password)
-            $scope.perCourierInfo[courier._id].password = courierInfo.password;
-        }
-      }
+        },
+        function(err) {
+          console.log('error getting couriers', err);
+        });
     },
     function(err) {
-      console.log('error getting couriers', err);
+      console.log('Error getting retailer', err);
     });
+  $scope.imageBase = configuration.API_BASE_PATH + '/retailer/getPhoto/';
+
+  
 
   $scope.updateRetailer = function() {
     if (!this.retailerForm.$invalid) {

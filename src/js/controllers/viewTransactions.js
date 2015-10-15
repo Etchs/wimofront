@@ -3,12 +3,13 @@
 /* Controllers */
 
 // View Transactions controller
-app.controller('ViewTransactionsCtrl', ['$scope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $stateParams, $state, LoggedInRestangular) {
+app.controller('ViewTransactionsCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $rootScope, $stateParams, $state, LoggedInRestangular) {
 	// $scope.transactions = [];
 	LoggedInRestangular.all('transaction').getList().then(
 		function(transactions) {
 			console.log(transactions);
 			$scope.transactions = transactions;
+			$rootScope.transactionsNum = transactions.length;
 		},
 		function(err) {
 			console.log('error getting transactions', err);
