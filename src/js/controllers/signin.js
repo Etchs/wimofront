@@ -11,7 +11,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$localStor
         Restangular.one('user/jwt').get().then(
             function (tokenObj) {
               $localStorage.tokenObj = tokenObj;
-              $state.go('app.page.neworder');
+              $state.go('app.dashboard-v1');
             },
             function (err) {
               $scope.authError = 'Something went wrong! Please try again later.';
