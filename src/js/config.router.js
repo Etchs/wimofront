@@ -33,7 +33,7 @@ angular.module('app')
 			        	if(now < expiryTime){
 			        		event.preventDefault();
 				        	console.log("Token not expired! Redirecting to default page");
-				        	$state.go('app.page.neworder');
+				        	$state.go('app.dashboard-v1');
 			        	}
 				    }
 
