@@ -27,8 +27,8 @@ angular.module('app')
         },
         settings: {
           themeID: 1,
-          navbarHeaderColor: 'bg-black',
-          navbarCollapseColor: 'bg-white-only',
+          navbarHeaderColor: 'bg-info',
+          navbarCollapseColor: 'bg-info',
           asideColor: 'bg-black',
           headerFixed: true,
           asideFixed: true,
