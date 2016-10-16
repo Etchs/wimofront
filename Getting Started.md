@@ -22,6 +22,7 @@
 	OR skip the last two lines and keep the exisitng lodash.js
 	`sudo grunt build:angular`  
 	`sudo npm start`  
+	OR `node node_modules/http-server/bin/http-server --cors -c-1 -p 9001`
 	
 	
 	
