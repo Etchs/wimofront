@@ -5,6 +5,7 @@
     "UPLOAD" : "Upload",
     "new" : {
       "NEW" : "Neu",
+      "NEWORDER" : "Neu Order",
       "PROJECT" : "Projekte",
       "TASK" : "Aufgabe",
       "USER" : "Benutzer",
@@ -16,6 +17,11 @@
 "aside" : {
   "nav" : {
     "HEADER" : "Navigation",
+    "WIMO" : "WIMO",
+    "TRANS" : "Transactions",
+    "COURIERS" : "Couriers",
+    "ERETAILERS" : "eRetailers",
+    "CALLCENTRE" : "Call Centre",
     "DASHBOARD" : "Armaturenbrett",
     "CALENDAR" : "Kalender",
     "EMAIL" : "E-Mail",
@@ -49,6 +55,7 @@
       "pages" : {
         "PAGES" : "Seiten",
         "PROFILE" : "Profil",
+        "NEWORDER" : "New Order",
         "POST" : "Post",
         "SEARCH" : "Suchen",
         "INVOICE" : "Rechnung",
