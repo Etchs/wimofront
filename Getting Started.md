@@ -15,12 +15,14 @@
    `sudo npm install -g bower`
 
 8. navigate to /vagrant and run the following commands:
-	`sudo npm install`
-	`grunt bower-install-simple`
-	`npm i -g lodash-cli`
-	`lodash modern -o ./lodash.js`
-	`sudo grunt build:angular`
-	`sudo npm start`
+	`sudo npm install`  
+	`grunt bower-install-simple`  
+	`npm i -g lodash-cli`  
+	`lodash modern -o ./lodash.js`  
+	OR skip the last two lines and keep the exisitng lodash.js
+	`sudo grunt build:angular`  
+	`sudo npm start`  
+	OR `node node_modules/http-server/bin/http-server --cors -c-1 -p 9001`
 	
 	
 	
