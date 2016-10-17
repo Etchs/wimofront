@@ -4,6 +4,7 @@
 
 // View Couriers controller
 app.controller('ViewCouriersCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'LoggedInRestangular', function($scope, $rootScope, $stateParams, $state, LoggedInRestangular) {
+	$scope.imageBase = configuration.API_BASE_PATH + '/courier/getPhoto/';
 	// $scope.couriers = [];
 	LoggedInRestangular.all('courier').getList().then(
 		function(couriers) {
